@@ -1,0 +1,515 @@
+/* =====================================================
+   HEADER.CSS
+   PART 1
+===================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
+
+:root {
+  --primary: #3586ff;
+  --primary-light: #57b7ff;
+  --glass: rgba(255, 255, 255, 0.08);
+  --glass-hover: rgba(255, 255, 255, 0.12);
+  --border: rgba(255, 255, 255, 0.1);
+  --text: #ffffff;
+  --muted: #c8d1df;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Prevent Bootstrap from adding margins */
+body {
+  margin: 0;
+}
+
+/* ==========================
+   HEADER
+========================== */
+
+.header {
+  position: fixed;
+
+  top: 20px;
+
+  left: 0;
+
+  width: 100%;
+
+  display: flex;
+
+  justify-content: center;
+
+  z-index: 9999;
+
+  pointer-events: none;
+}
+
+/* ==========================
+   GLASS NAVBAR
+========================== */
+
+.glass-navbar {
+  pointer-events: auto;
+
+  width: 92%;
+
+  max-width: 1450px;
+
+  padding: 14px 28px;
+
+  border-radius: 22px;
+
+  background: rgba(11, 19, 35, 0.55);
+
+  backdrop-filter: blur(18px);
+
+  -webkit-backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3),
+    inset 0 1px rgba(255, 255, 255, 0.08);
+
+  transition: 0.35s;
+}
+
+.glass-navbar.scrolled {
+  background: rgba(8, 15, 28, 0.82);
+
+  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.45);
+}
+
+/* ==========================
+   LOGO
+========================== */
+
+.logo {
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  color: white !important;
+
+  text-decoration: none !important;
+}
+
+.logo-circle {
+  width: 52px;
+
+  height: 52px;
+
+  border-radius: 50%;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  background: linear-gradient(135deg, #3586ff, #59b6ff);
+
+  box-shadow: 0 0 20px rgba(53, 134, 255, 0.45);
+
+  transition: 0.35s;
+}
+
+.logo:hover .logo-circle {
+  transform: rotate(-15deg) scale(1.08);
+}
+
+.logo-circle i {
+  color: white;
+
+  font-size: 22px;
+
+  margin: 0;
+}
+
+.logo-text {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.logo-text .title {
+  color: white;
+
+  font-size: 22px;
+
+  font-weight: 700;
+
+  line-height: 1;
+}
+
+.logo-text .subtitle {
+  color: var(--muted);
+
+  font-size: 11px;
+
+  letter-spacing: 1px;
+
+  text-transform: uppercase;
+
+  margin-top: 4px;
+}
+
+/* ==========================
+   NAV LINKS
+========================== */
+
+.navbar-nav {
+  align-items: center;
+}
+
+.nav-item {
+  margin: 0 6px;
+}
+
+.nav-link {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  color: #d7e5ff !important;
+
+  padding: 12px 18px !important;
+
+  border-radius: 14px;
+
+  font-weight: 500;
+
+  transition: 0.3s;
+}
+
+.nav-link i {
+  margin: 0;
+
+  font-size: 15px;
+
+  opacity: 0.9;
+}
+
+.nav-link:hover {
+  color: white !important;
+
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.nav-link::after {
+  content: "";
+
+  position: absolute;
+
+  left: 16px;
+
+  bottom: 8px;
+
+  width: 0;
+
+  height: 2px;
+
+  background: #57b7ff;
+
+  border-radius: 5px;
+
+  transition: 0.35s;
+}
+
+.nav-link:hover::after {
+  width: calc(100% - 32px);
+}
+
+/* Active page */
+
+.nav-link.active {
+  color: white !important;
+
+  background: rgba(53, 134, 255, 0.16);
+}
+
+.nav-link.active::after {
+  width: calc(100% - 32px);
+}
+
+/* =====================================================
+   HEADER.CSS
+   PART 2
+===================================================== */
+
+/* ==========================
+   ACCOUNT BUTTON
+========================== */
+
+.account-btn {
+  display: flex !important;
+
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 8px 12px 8px 10px !important;
+
+  border-radius: 50px;
+
+  background: rgba(255, 255, 255, 0.05);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  transition: 0.3s;
+}
+
+.account-btn:hover {
+  background: rgba(53, 134, 255, 0.15) !important;
+
+  border-color: rgba(87, 183, 255, 0.4);
+}
+
+.account-btn::after {
+  display: none !important;
+}
+
+.avatar {
+  width: 42px;
+
+  height: 42px;
+
+  border-radius: 50%;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  background: linear-gradient(135deg, #3586ff, #57b7ff);
+
+  color: white;
+
+  box-shadow: 0 0 18px rgba(53, 134, 255, 0.35);
+}
+
+.avatar i {
+  margin: 0;
+
+  font-size: 15px;
+}
+
+/* ==========================
+   GLASS DROPDOWN
+========================== */
+
+.glass-dropdown {
+  margin-top: 14px;
+
+  min-width: 220px;
+
+  padding: 10px;
+
+  border: none;
+
+  border-radius: 18px;
+
+  background: rgba(11, 19, 35, 0.95);
+
+  backdrop-filter: blur(18px);
+
+  -webkit-backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+
+  animation: dropdownFade 0.25s ease;
+}
+
+@keyframes dropdownFade {
+  from {
+    opacity: 0;
+
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+}
+
+.glass-dropdown .dropdown-item {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  color: #dbe8ff;
+
+  border-radius: 12px;
+
+  padding: 12px 16px;
+
+  transition: 0.25s;
+}
+
+.glass-dropdown .dropdown-item i {
+  width: 18px;
+
+  margin: 0;
+
+  color: #57b7ff;
+}
+
+.glass-dropdown .dropdown-item:hover {
+  background: rgba(53, 134, 255, 0.16);
+
+  color: #fff;
+}
+
+.glass-dropdown .dropdown-divider {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+  margin: 8px 0;
+}
+
+/* ==========================
+   HAMBURGER
+========================== */
+
+.navbar-toggler {
+  border: none !important;
+
+  outline: none !important;
+
+  box-shadow: none !important;
+
+  padding: 10px;
+}
+
+.navbar-toggler span {
+  display: block;
+
+  width: 28px;
+
+  height: 3px;
+
+  border-radius: 30px;
+
+  background: white;
+
+  margin: 6px 0;
+
+  transition: 0.35s;
+}
+
+/* ==========================
+   SCROLL EFFECT
+========================== */
+
+.header.scrolled .glass-navbar {
+  background: rgba(7, 14, 28, 0.9);
+
+  border-color: rgba(87, 183, 255, 0.15);
+
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45), 0 0 30px rgba(53, 134, 255, 0.08);
+}
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media (max-width: 991px) {
+  .header {
+    top: 10px;
+  }
+
+  .glass-navbar {
+    width: 96%;
+
+    padding: 14px 20px;
+  }
+
+  .navbar-collapse {
+    margin-top: 18px;
+
+    padding-top: 18px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .navbar-nav {
+    align-items: stretch;
+  }
+
+  .nav-item {
+    margin: 5px 0;
+  }
+
+  .nav-link {
+    justify-content: flex-start;
+
+    width: 100%;
+  }
+
+  .account-btn {
+    margin-top: 12px;
+
+    justify-content: flex-start;
+  }
+
+  .glass-dropdown {
+    background: rgba(255, 255, 255, 0.04);
+
+    border: 1px solid rgba(255, 255, 255, 0.06);
+
+    box-shadow: none;
+
+    margin-top: 8px;
+  }
+
+  .logo-text .subtitle {
+    display: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .glass-navbar {
+    border-radius: 18px;
+
+    padding: 12px 16px;
+  }
+
+  .logo-circle {
+    width: 45px;
+
+    height: 45px;
+  }
+
+  .logo-text .title {
+    font-size: 18px;
+  }
+
+  .nav-link {
+    font-size: 15px;
+  }
+}
+
+/* ==========================
+   MAIN OFFSET
+========================== */
+
+/* Prevent page content from hiding behind the fixed navbar */
+main {
+  padding-top: 120px;
+}

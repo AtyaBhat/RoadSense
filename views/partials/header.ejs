@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Community Hero</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/styles/header.css">
+
+</head>
+
+<body>
+
+<header class="header">
+
+    <nav class="glass-navbar navbar navbar-expand-lg">
+
+        <!-- Logo -->
+
+        <a href="/" class="navbar-brand logo">
+
+            <div class="logo-circle">
+
+                <i class="fas fa-map-marker-alt"></i>
+
+            </div>
+
+            <div class="logo-text">
+
+                <span class="title">
+                    Community Hero
+                </span>
+
+                <span class="subtitle">
+                    Smart Civic Reporting
+                </span>
+
+            </div>
+
+        </a>
+
+        <!-- Mobile Toggle -->
+
+        <button class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#mainNavbar"
+                aria-controls="mainNavbar"
+                aria-expanded="false">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+        <!-- Links -->
+
+        <div class="collapse navbar-collapse"
+             id="mainNavbar">
+
+            <ul class="navbar-nav mx-auto">
+
+                <li class="nav-item">
+
+                    <a href="/"
+                       class="nav-link">
+
+                        <i class="fas fa-home"></i>
+
+                        Home
+
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a href="/about"
+                       class="nav-link">
+
+                        <i class="fas fa-info-circle"></i>
+
+                        About
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+            <!-- Right Side -->
+
+            <ul class="navbar-nav">
+
+                <% if (currentUser && currentUser.role === 'admin') { %>
+                    <li class="nav-item">
+                        <a href="/admin/reports" class="nav-link">
+                            <i class="fas fa-shield-alt"></i>
+                            Admin Dashboard
+                        </a>
+                    </li>
+                <% } %>
+
+                <li class="nav-item dropdown">
+
+                    <a href="#"
+                       class="nav-link account-btn dropdown-toggle"
+                       id="accountDropdown"
+                       role="button"
+                       data-toggle="dropdown"
+                       aria-haspopup="true"
+                       aria-expanded="false">
+
+                        <div class="avatar">
+
+                            <i class="fas fa-user"></i>
+
+                        </div>
+
+                        <span>
+                            <% if (currentUser) { %>
+                                Account
+                            <% } else { %>
+                                Login
+                            <% } %>
+                        </span>
+
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-right glass-dropdown">
+
+                        <% if (currentUser) { %>
+
+                            <a class="dropdown-item" href="/reports/new">
+                                <i class="fas fa-camera"></i>
+                                Submit Report
+                            </a>
+
+                            <a class="dropdown-item" href="/my-reports">
+                                <i class="fas fa-list"></i>
+                                My Reports
+                            </a>
+
+                            <div class="dropdown-divider"></div>
+
+                            <a class="dropdown-item" href="/logout">
+                                <i class="fas fa-sign-out-alt"></i>
+                                Logout
+                            </a>
+
+                        <% } else { %>
+
+                            <a class="dropdown-item" href="/login">
+                                <i class="fas fa-sign-in-alt"></i>
+                                Login
+                            </a>
+
+                            <a class="dropdown-item" href="/register">
+                                <i class="fas fa-user-plus"></i>
+                                Register
+                            </a>
+
+                        <% } %>
+
+                    </div>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </nav>
+
+</header>
+
+<main>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="/js/header.js"></script>

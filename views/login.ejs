@@ -1,0 +1,150 @@
+<%- include('partials/header') %>
+
+<link rel="stylesheet" href="/styles/auth.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<main class="auth-page">
+
+    <section class="auth-left">
+
+        <div class="glow glow1"></div>
+        <div class="glow glow2"></div>
+
+        <div class="hero-content">
+
+            <div class="hero-badge">
+                COMMUNITY • REPORT • IMPROVE
+            </div>
+
+            <h1>
+                Report civic issues.<br>
+                Make your city better.
+            </h1>
+
+            <p>
+                Upload photos of potholes, broken streetlights, garbage,
+                drainage problems and other civic issues.
+                Every report reaches the proper authority and helps improve
+                your community.
+            </p>
+
+            <div class="hero-stats">
+
+                <div class="stat-card">
+                    <h2>12K+</h2>
+                    <span>Reports Submitted</span>
+                </div>
+
+                <div class="stat-card">
+                    <h2>4.8★</h2>
+                    <span>User Rating</span>
+                </div>
+
+                <div class="stat-card">
+                    <h2>24/7</h2>
+                    <span>Available</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="auth-right">
+
+        <div class="auth-card">
+
+            <h2>Welcome Back</h2>
+
+            <p class="subtitle">
+                Sign in to continue reporting issues.
+            </p>
+
+            <!-- 🔴 ERROR MESSAGE HERE -->
+            <% if (messages && messages.error) { %>
+            <div class="error-message">
+                <%= messages.error %>
+            </div>
+            <% } %>
+
+            <% if (messages && messages.success) { %>
+            <div class="success-message">
+                <%= messages.success %>
+            </div>
+            <% } %>
+            
+            <form action="/login" method="POST">
+
+                <div class="input-group">
+
+                    <span class="material-icons">
+                        mail
+                    </span>
+
+                    <input
+                        type="email"
+                        placeholder="Email Address"
+                        required
+                        name="username">
+
+                </div>
+
+                <div class="input-group">
+
+                    <span class="material-icons">
+                        lock
+                    </span>
+
+                    <input
+                        id="password"
+                        type="password"
+                        placeholder="Password"
+                        required
+                        name="password">
+
+                    <span
+                        class="material-icons eye"
+                        id="togglePassword">
+
+                        visibility
+
+                    </span>
+
+                </div>
+
+                <div class="options">
+
+                    <a href="/forgot-password">
+                        Forgot Password?
+                    </a>
+
+                </div>
+
+                <button class="primary-btn">
+
+                    Login
+
+                </button>
+
+            </form>
+
+            <div class="switch-auth">
+
+                Don't have an account?
+
+                <a href="/register">
+
+                    Register
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+<script src="/js/login.js"></script>

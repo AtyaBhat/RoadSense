@@ -1,0 +1,77 @@
+<%- include('partials/header') %>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
+<link rel="stylesheet" href="/styles/admin.css">
+
+<main class="admin-page">
+    <div class="admin-header">
+        <h1>Complaint map</h1>
+        <% if (centerLat && centerLng) { %>
+            <p>Showing reports within <%= radiusKm %> km of the selected location.</p>
+        <% } else { %>
+            <p>All geo-tagged reports. Click a cluster to zoom in.</p>
+        <% } %>
+
+        <% if (centerLat && centerLng) { %>
+            <form method="GET" action="/admin/map" class="radius-form">
+                <input type="hidden" name="lat" value="<%= centerLat %>">
+                <input type="hidden" name="lng" value="<%= centerLng %>">
+                <label for="radius">Radius:</label>
+                <select name="radius" id="radius" onchange="this.form.submit()">
+                    <option value="1" <%= radiusKm === 1 ? 'selected' : '' %>>1 km</option>
+                    <option value="5" <%= radiusKm === 5 ? 'selected' : '' %>>5 km</option>
+                    <option value="10" <%= radiusKm === 10 ? 'selected' : '' %>>10 km</option>
+                    <option value="25" <%= radiusKm === 25 ? 'selected' : '' %>>25 km</option>
+                    <option value="100" <%= radiusKm === 100 ? 'selected' : '' %>>100 km</option>
+                </select>
+            </form>
+            <a href="/admin/reports" class="maps-link">&larr; View all reports (whole map)</a>
+        <% } %>
+    </div>
+
+    <div id="map" style="height: 600px; border-radius: 20px; overflow: hidden;"></div>
+</main>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+<script>
+    const reports = <%- JSON.stringify(reports).replace(/</g, '\\u003c') %>;
+    const centerLat = <%- centerLat ? centerLat : 'null' %>;
+    const centerLng = <%- centerLng ? centerLng : 'null' %>;
+
+    const hasCenter = centerLat !== null && centerLng !== null;
+
+    const map = hasCenter
+        ? L.map('map').setView([centerLat, centerLng], 13)
+        : L.map('map').setView([20.5937, 78.9629], 5); // default: India, whole-map view
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    const markers = L.markerClusterGroup();
+
+    reports.forEach(function (r) {
+        const sr = r.structured_report || {};
+        const marker = L.marker([r.latitude, r.longitude]);
+        marker.bindPopup(
+            "<strong>" + (sr.damage_type || "Unknown") + "</strong><br>" +
+            "Severity: " + (sr.severity || "unknown") + "<br>" +
+            "Status: " + r.status
+        );
+        markers.addLayer(marker);
+    });
+
+    map.addLayer(markers);
+
+    if (hasCenter) {
+        L.circleMarker([centerLat, centerLng], {
+            radius: 8, color: "#3586ff", fillColor: "#3586ff", fillOpacity: 0.9,
+        }).addTo(map).bindPopup("Selected report location");
+    } else if (reports.length > 0) {
+        const bounds = L.latLngBounds(reports.map(r => [r.latitude, r.longitude]));
+        map.fitBounds(bounds, { padding: [50, 50] });
+    }
+</script>

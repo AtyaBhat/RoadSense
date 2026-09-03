@@ -1,0 +1,91 @@
+<%- include('partials/header') %>
+
+<link rel="stylesheet" href="/styles/submit-report.css">
+
+<main class="submit-page">
+    <div class="submit-card">
+        <h1>Report a civic issue</h1>
+        <p class="submit-subtitle">Upload a photo and share the location. Our AI will analyze the damage automatically.</p>
+
+        <form id="reportForm" action="/reports" method="POST" enctype="multipart/form-data">
+
+            <label class="field-label">Photo</label>
+            <input type="file" name="image" accept="image/*" required>
+
+            <label class="field-label">Location</label>
+            <div class="location-choice">
+                <label>
+                    <input type="radio" name="locationMode" value="gps" checked>
+                    Use my current location
+                </label>
+                <label>
+                    <input type="radio" name="locationMode" value="manual">
+                    Enter location manually
+                </label>
+            </div>
+
+            <input
+                type="text"
+                name="location"
+                id="manualLocation"
+                placeholder="e.g. Highway NH-43, near sector 12"
+                style="display:none;"
+            >
+
+            <input type="hidden" name="latitude" id="latitude">
+            <input type="hidden" name="longitude" id="longitude">
+
+            <p id="gpsStatus" class="gps-status"></p>
+
+            <button type="submit" class="btn-primary submit-btn">Submit report</button>
+        </form>
+    </div>
+</main>
+
+<script>
+    const radios = document.querySelectorAll('input[name="locationMode"]');
+    const manualInput = document.getElementById('manualLocation');
+    const gpsStatus = document.getElementById('gpsStatus');
+    const latField = document.getElementById('latitude');
+    const lngField = document.getElementById('longitude');
+
+    function tryGetGPS() {
+        if (!navigator.geolocation) {
+            gpsStatus.textContent = "GPS not supported by your browser. Please enter location manually.";
+            return;
+        }
+        gpsStatus.textContent = "Getting your location...";
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                latField.value = position.coords.latitude;
+                lngField.value = position.coords.longitude;
+                gpsStatus.textContent =
+                    "Location captured: " +
+                    position.coords.latitude.toFixed(5) + ", " +
+                    position.coords.longitude.toFixed(5);
+            },
+            () => {
+                gpsStatus.textContent = "Could not get your location. Please switch to manual entry.";
+            }
+        );
+    }
+
+    radios.forEach(radio => {
+        radio.addEventListener('change', () => {
+            if (radio.value === 'gps' && radio.checked) {
+                manualInput.style.display = 'none';
+                manualInput.required = false;
+                tryGetGPS();
+            } else if (radio.value === 'manual' && radio.checked) {
+                manualInput.style.display = 'block';
+                manualInput.required = true;
+                latField.value = "";
+                lngField.value = "";
+                gpsStatus.textContent = "";
+            }
+        });
+    });
+
+    // Attempt GPS immediately since it's the default selected mode
+    tryGetGPS();
+</script>

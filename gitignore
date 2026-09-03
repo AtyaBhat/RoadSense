@@ -1,0 +1,24 @@
+# Environment variables - NEVER commit this
+.env
+
+# Node
+node_modules/
+npm-debug.log
+
+# Python (yolo_service, agent_service)
+venv/
+__pycache__/
+*.pyc
+
+# Uploaded/generated media - don't bloat the repo with user content
+public/uploads/*
+!public/uploads/.gitkeep
+
+# YOLO model weights are large - track separately (Git LFS) if needed
+yolo_service/model/*.pt
+
+# OS/editor junk
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

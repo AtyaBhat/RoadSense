@@ -1,0 +1,35 @@
+{
+  "name": "garbage_site",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "axios": "^1.18.1",
+    "bcrypt": "^6.0.0",
+    "connect-flash": "^0.1.1",
+    "dotenv": "^17.4.2",
+    "ejs": "^6.0.1",
+    "ent": "^2.2.2",
+    "env": "^0.0.2",
+    "express": "^5.2.1",
+    "express-rate-limit": "^7.4.1",
+    "express-session": "^1.19.0",
+    "form-data": "^4.0.6",
+    "helmet": "^8.0.0",
+    "multer": "^2.2.0",
+    "nodemailer": "^6.9.16",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "pg": "^8.22.0"
+  },
+  "allowScripts": {
+    "bcrypt@6.0.0": true
+  }
+}

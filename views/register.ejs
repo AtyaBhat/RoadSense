@@ -1,0 +1,139 @@
+<%- include('partials/header') %>
+
+<link rel="stylesheet" href="/styles/auth.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<main class="auth-page">
+
+    <section class="auth-left">
+
+        <div class="glow glow1"></div>
+        <div class="glow glow2"></div>
+
+        <div class="hero-content">
+
+            <div class="hero-badge">
+                COMMUNITY • REPORT • IMPROVE
+            </div>
+
+            <h1>
+                Join the movement.<br>
+                Help build a cleaner city.
+            </h1>
+
+            <p>
+                Create an account to report potholes, broken streetlights,
+                overflowing garbage bins, damaged roads and more. Together,
+                we can make every neighborhood safer and cleaner.
+            </p>
+
+            <div class="hero-stats">
+
+                <div class="stat-card">
+                    <h2>12K+</h2>
+                    <span>Reports Submitted</span>
+                </div>
+
+                <div class="stat-card">
+                    <h2>850+</h2>
+                    <span>Issues Resolved</span>
+                </div>
+
+                <div class="stat-card">
+                    <h2>500+</h2>
+                    <span>Active Citizens</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="auth-right">
+
+        <div class="auth-card">
+
+            <h2>Create Account</h2>
+
+            <p class="subtitle">
+                Become a part of your city's improvement.
+            </p>
+
+            <form action="/register" method="POST">
+
+                <div class="input-group">
+
+                    <span class="material-icons">
+                        mail
+                    </span>
+
+                    <input
+                        type="email"
+                        placeholder="Email Address"
+                        required
+                        name="username">
+
+                </div>
+
+                <div
+                    class="password-error"
+                    id="passwordError">
+                </div>
+
+                <div class="input-group">
+
+                    <span class="material-icons">
+                        lock
+                    </span>
+
+                    <input
+                        id="password"
+                        type="password"
+                        placeholder="Password"
+                        required
+                        name="password">
+
+                </div>
+
+                <div class="input-group">
+
+                    <span class="material-icons">
+                        lock
+                    </span>
+
+                    <input
+                        id="confirmPassword"
+                        type="password"
+                        placeholder="Confirm Password"
+                        required>
+
+                </div>
+
+                <button class="primary-btn">
+
+                    Create Account
+
+                </button>
+
+            </form>
+
+            <div class="switch-auth">
+
+                Already have an account?
+
+                <a href="/login">
+
+                    Login
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+<script src="/js/register.js"></script>

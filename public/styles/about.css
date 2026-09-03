@@ -1,0 +1,72 @@
+/* ===========================
+   ABOUT PAGE (minimal)
+=========================== */
+
+html, body {
+  background: #07111f;
+  margin: 0;
+  min-height: 100%;
+}
+
+.about-page {
+  background: #07111f;
+  color: #ffffff;
+  min-height: 100vh;
+}
+
+.about-page section {
+  padding: 80px 8%;
+}
+
+.about-page h1 {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.about-page h2 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #ffffff;
+}
+
+.about-page p {
+  color: #c8d1df;
+  line-height: 1.8;
+  font-size: 17px;
+}
+
+.about-intro {
+  text-align: center;
+}
+
+.about-intro p {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.about-block {
+  max-width: 800px;
+  margin: 0 auto 50px;
+}
+
+.about-block:last-child {
+  margin-bottom: 0;
+}
+
+.about-block ol {
+  color: #c8d1df;
+  line-height: 1.9;
+  padding-left: 22px;
+}
+
+.about-block ol li {
+  margin-bottom: 8px;
+}
+
+.about-page .divider-section {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}

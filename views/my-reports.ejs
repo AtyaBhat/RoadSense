@@ -1,0 +1,78 @@
+<%- include('partials/header') %>
+
+<link rel="stylesheet" href="/styles/admin.css">
+
+<main class="admin-page">
+    <div class="admin-header">
+        <h1>My Reports</h1>
+        <p>Everything you've submitted, most recent first.</p>
+        <a href="/reports/new" class="maps-link">Submit a new report &rarr;</a>
+    </div>
+
+    <% if (reports.length === 0) { %>
+        <p class="empty-state">You haven't submitted any reports yet.</p>
+    <% } else { %>
+        <div class="admin-grid">
+            <% reports.forEach(function(r) { %>
+                <% const sr = r.structured_report || {}; %>
+                <% const imgSrc = r.annotated_image_url
+                     ? '/' + r.annotated_image_url.replace(/\\/g, '/').replace('public/', '')
+                     : '/uploads/placeholder.jpg'; %>
+                <div class="admin-card">
+
+                    <img
+                        src="<%= imgSrc %>"
+                        alt="Detected road damage with bounding boxes"
+                        class="admin-thumb"
+                        onclick="openLightbox('<%= imgSrc %>')"
+                    >
+
+                    <div class="admin-card-body">
+                        <div class="admin-card-top">
+                            <span class="severity-badge severity-<%= sr.severity || 'unknown' %>">
+                                <%= sr.severity || 'unknown' %>
+                            </span>
+                            <span class="status-badge status-<%= r.status %>">
+                                <%= r.status %>
+                            </span>
+                        </div>
+
+                        <h3><%= sr.damage_type || 'Unknown issue' %></h3>
+                        <p class="admin-summary"><%= sr.summary %></p>
+
+                        <p class="admin-meta">
+                            <%= sr.location || 'Location unknown' %>
+                            &middot;
+                            <%= new Date(r.created_at).toLocaleString() %>
+                        </p>
+
+                        <% if (r.latitude && r.longitude) { %>
+                            <a
+                                class="maps-link"
+                                href="https://www.google.com/maps?q=<%= r.latitude %>,<%= r.longitude %>"
+                                target="_blank"
+                                rel="noopener"
+                            >
+                                Open in Google Maps
+                            </a>
+                        <% } %>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    <% } %>
+
+    <div id="lightboxOverlay" class="lightbox-overlay" onclick="closeLightbox()">
+        <img id="lightboxImage" src="" alt="Full size report image">
+    </div>
+</main>
+
+<script>
+    function openLightbox(src) {
+        document.getElementById('lightboxImage').src = src;
+        document.getElementById('lightboxOverlay').classList.add('active');
+    }
+    function closeLightbox() {
+        document.getElementById('lightboxOverlay').classList.remove('active');
+    }
+</script>
